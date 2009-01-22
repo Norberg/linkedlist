@@ -57,7 +57,7 @@ int main()
 	{
 		cout << i << " :" << lista.elementAt(i) << endl;
 	}
-	cout << "Tog bort: " << lista.removeAt(5) << "pos: 5" << endl;
+	cout << "Tog bort: " << lista.removeAt(3) << "pos:3" << endl;
 	cout << "-----" << endl;
 	for (int i = 0; i < lista.size(); i++)
 	{

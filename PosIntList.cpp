@@ -118,7 +118,7 @@ int PosIntList::removeAt(int pos)
 	}
 	
 	Node *walker = first;
-	for (int i = 2; i < pos; i++)
+	for (int i = 1; i < pos; i++)
 	{
 		walker = walker->next;
 	}
