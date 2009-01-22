@@ -9,8 +9,67 @@ PosIntList::PosIntList()
 	nrOfNodes = 0;
 }
 
+PosIntList::PosIntList(const PosIntList& list)
+{
+	if (list.nrOfNodes == 0)
+	{
+		first = NULL;
+		nrOfNodes = 0;
+		return;
+	}
+
+	Node *walker;
+	Node *copy1;
+	Node *copy2;
+	walker = list.first;
+	copy1 = new Node(walker->value);
+	first = copy1;
+	for (int i = 1; i < list.nrOfNodes; i++)
+	{
+		walker = walker->next;
+		copy2 = new Node(walker->value);
+		copy1->next = copy2;
+		copy1 = copy2;
+	}
+	nrOfNodes = list.nrOfNodes;	
+}
+
+PosIntList PosIntList::operator=(const PosIntList& list)
+{
+	if (list.nrOfNodes == 0)
+	{
+		nrOfNodes = 0;
+		return *this;
+	}
+
+	Node *walker;
+	Node *copy1;
+	Node *copy2;
+	walker = list.first;
+	copy1 = new Node(walker->value);
+	first = copy1;
+	for (int i = 1; i < list.nrOfNodes; i++)
+	{
+		walker = walker->next;
+		copy2 = new Node(walker->value);
+		copy1->next = copy2;
+		copy1 = copy2;
+	}
+	nrOfNodes = list.nrOfNodes;
+	return *this;
+}
+
 PosIntList::~PosIntList()
 {
+	Node *tmp;
+	Node* walker;
+	walker = first;
+	for(int i = 0; i < nrOfNodes; i++)
+	{
+		 tmp = walker;
+		 walker = walker->next;
+		 delete tmp;
+	}
 }
 void PosIntList::insertFirst(int value)
 {

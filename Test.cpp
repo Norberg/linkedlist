@@ -47,7 +47,6 @@ int main()
 	/*Ska ge utskriften:
 	Test 3
 	60 20 10
-	*/
 	list1->insertFirst(10);
 	list1->insertFirst(20);
 	list1->insertLast(30);
@@ -68,6 +67,8 @@ int main()
 		cout<<list1->elementAt(i)<<"  ";
 	}
 	cout<<endl;
+	delete list1;
+	*/
 	//Test 4, tilldelningsoperator
 	/*Ska ge utskriften:
 	Test 4
@@ -85,13 +86,13 @@ int main()
 	{
 		cout<<list4.elementAt(i)<<"  ";
 	}
-	cout<<endl;*/
-
+	cout<<endl;
+	*/
 	//Test 5, removeLast()
 	/*Ska ge utskriften:
 	Test 5
 */
-	/*
+/*	
 	list1->insertFirst(10);
 	list1->removeLast();
 	cout<<"Test 5"<<endl;
@@ -100,14 +101,14 @@ int main()
 		cout<<list1->elementAt(i)<<"  ";
 	}
 	cout<<endl;
-	*/
+*/	
 	//Test 6, copy-konstruktor
 	/*Ska ge utskriften:
 	Test 6
 	70 60 20 50 10 30
 	70 60 50 30
 	70 60 20 50 10 30
-	
+	*/
 	PosIntList list5;
 	list5.insertFirst(10);
 	list5.insertFirst(20);
@@ -126,7 +127,8 @@ int main()
 	{
 		cout<<list5.elementAt(i)<<"  ";
 	}
-	cout<<endl;*/
+	cout<<endl;
+	delete list1;
 	return 0;
 }
 void modify(PosIntList list6)
