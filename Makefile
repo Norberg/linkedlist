@@ -1,2 +1,2 @@
 default:
-	g++ main.cpp List.h -o test
+	g++ main.cpp List.cpp -o test
