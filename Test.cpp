@@ -1,13 +1,13 @@
-#include "PosIntList.h"
+#include "List.h"
 #include <iostream>
 
 using namespace std;
 
-void modify(PosIntList );
+void modify(List );
 int main()
 {
-	PosIntList *list1;
-	list1=new PosIntList();
+	List *list1;
+	list1=new List();
 	
 	//Test 1, funktioner
 	//Ska ge utskriften:
@@ -74,12 +74,12 @@ int main()
 	Test 4
 	20 10 30
 
-	PosIntList list3;
+	List list3;
 	list3.insertFirst(10);
 	list3.insertFirst(20);
 	list3.insertLast(30);
 	
-	PosIntList list4;
+	List list4;
 	list4=list3;
 	cout<<"Test 4"<<endl;
 	for (int i=0; i<list4.size(); i++)
@@ -109,7 +109,7 @@ int main()
 	70 60 50 30
 	70 60 20 50 10 30
 	*/
-	PosIntList list5;
+	List list5;
 	list5.insertFirst(10);
 	list5.insertFirst(20);
 	list5.insertLast(30);
@@ -131,7 +131,7 @@ int main()
 	delete list1;
 	return 0;
 }
-void modify(PosIntList list6)
+void modify(List list6)
 {
 	list6.removeAt(2);
 	list6.removeAt(3);

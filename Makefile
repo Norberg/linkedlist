@@ -1,2 +1,2 @@
 default:
-	g++ Test.cpp PosIntList.cpp -o test
+	g++ main.cpp List.cpp -o test

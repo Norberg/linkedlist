@@ -1,13 +1,13 @@
 #include <iostream>
-#include "PosIntList.h"
+#include "List.h"
 
 using namespace std;
 
 int main()
 {
-	PosIntList lista;
-	lista.insertFirst(10);
-	lista.insertLast(20);
+	List<int> lista;
+	lista.insertFirst(10.3);
+	lista.insertLast(20.4);
 	for (int i = 0; i < lista.size(); i++)
 	{
 		cout << i << " :" << lista.elementAt(i) << endl;
