@@ -35,4 +35,6 @@ public:
 	bool contains(int value) const;
 };
 
+//due to the usage of templates we have to include the .cpp file here
+#include "List.cpp" 
 #endif
