@@ -13,7 +13,7 @@ private :
 	public:
 		T value;
 		Node *next;
-		Node(int value){ this->value = value; this->next = NULL;}
+		Node(T value){ this->value = value; this->next = NULL;}
 		~Node() {}
 	};
 	

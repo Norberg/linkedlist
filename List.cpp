@@ -101,6 +101,15 @@ void List<T>::insertLast(T value)
 template <typename T>
 void List<T>::insertAt(int pos, T value)
 {
+	if (pos == nrOfNodes)
+		insertLast(value);
+	else if (pos == 0)
+		insertFirst(value);
+	else if (pos < 0 || pos > nrOfNodes)
+	{
+		cerr << "Out of range error" << endl;
+		exit (-1);
+	}		
 	Node *e = new Node(value);
 	Node *walker;
 	Node *tmp;
@@ -119,6 +128,11 @@ void List<T>::insertAt(int pos, T value)
 template <typename T>
 T List<T>::elementAt(int pos)const
 {
+	if (pos >= nrOfNodes || pos < 0)
+	{
+		cerr << "Tried to access no existing node" << endl;
+		exit (-1);
+	}
 	Node *walker;
 	walker = first;
 	for (int i = 0; i < pos; i++)
@@ -132,13 +146,13 @@ T List<T>::elementAt(int pos)const
 template <typename T>
 T List<T>::removeFirst()
 {
-	if (nrOfNodes == 0)
+	if (nrOfNodes <= 0)
 	{
 		cerr << "No element to remove!" << endl;
-		return -1;	
+		exit (-1);
 	}
 	Node *remove = first;
-	int val = first->value;
+	T val = first->value;
 	first = first->next;
 	delete remove;
 	nrOfNodes--;
@@ -150,10 +164,10 @@ T List<T>::removeLast()
 {
 	if (nrOfNodes == 1)
 		return removeFirst();	
-	if (nrOfNodes == 0)
+	if (nrOfNodes <= 0)
 	{
 		cerr << "No element to remove!" << endl;
-		return -1;	
+		exit (-1);
 	}
 	
 	Node *walker = first;
@@ -162,7 +176,7 @@ T List<T>::removeLast()
 		walker = walker->next;
 	}
 	nrOfNodes--;
-	int val = walker->next->value;
+	T val = walker->next->value;
 	delete walker->next;
 	walker->next = NULL;
 	return val;
@@ -171,10 +185,10 @@ T List<T>::removeLast()
 template <typename T>
 T List<T>::removeAt(int pos)
 {
-	if (pos >= nrOfNodes)
+	if (pos >= nrOfNodes || pos < 0)
 	{
 		cerr << "Element dont exist!" << endl;
-		return -1;
+		exit (-1);
 	}
 	//First element
 	else if (pos == 0)
@@ -193,7 +207,7 @@ T List<T>::removeAt(int pos)
 		walker = walker->next;
 	}
 	nrOfNodes--;
-	int val = walker->next->value;
+	T val = walker->next->value;
 	Node* remove = walker->next;
 	walker->next = walker->next->next;
 	delete remove;

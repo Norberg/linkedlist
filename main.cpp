@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-	List<int> lista;
+	List<double> lista;
 	lista.insertFirst(10.3);
 	lista.insertLast(20.4);
 	for (int i = 0; i < lista.size(); i++)
