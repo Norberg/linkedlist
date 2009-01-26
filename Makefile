@@ -1,2 +1,2 @@
 default:
-	g++ test2.cpp List.h -o test
+	g++ test2.cpp -o test
