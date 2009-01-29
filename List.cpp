@@ -88,7 +88,10 @@ template <typename T>
 void List<T>::insertLast(T value)
 {
 	if (first == NULL)
+	{
 		insertFirst(value);
+		return;
+	}
 
 	Node *e = new Node(value);
 	Node *walker;

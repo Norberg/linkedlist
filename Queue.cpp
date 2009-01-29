@@ -1,48 +1,48 @@
 template <typename T>
-Stack<T>::Stack()
+Queue<T>::Queue()
 {
 
 }
 
 template <typename T>
-Stack<T>::Stack(const Stack& stack)
+Queue<T>::Queue(const Queue& queue)
 {
-	mList = stack.mList;
+	mList = queue.mList;
 }
 
 template <typename T>
-Stack<T>::~Stack()
+Queue<T>::~Queue()
 {
 
 }
 
 template <typename T>
-Stack<T> Stack<T>::operator=(const Stack& stack)
+Queue<T> Queue<T>::operator=(const Queue& queue)
 {
-	mList = stack.mList;
+	mList = queue.mList;
 	return *this;
 }
 
 template <typename T>
-void Stack<T>::push(T value)
+void Queue<T>::enqueue(T value)
 {
-	mList.insertFirst(value);
+	mList.insertLast(value);
 }
 
 template <typename T>
-void Stack<T>::pop()
+void Queue<T>::dequeue()
 {
 	mList.removeFirst();
 }
 
 template <typename T>
-T Stack<T>::top()
+T Queue<T>::front()
 {
 	return mList.elementAt(0);
 }
 
 template <typename T>
-bool Stack<T>::empty()
+bool Queue<T>::empty()
 {
 	if (mList.size() == 0)
 		return true;
