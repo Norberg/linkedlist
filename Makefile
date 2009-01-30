@@ -1,2 +1,2 @@
 default:
-	g++ queueTest.cpp -o test -Wall
+	g++ pqTest.cpp -o test -Wall
