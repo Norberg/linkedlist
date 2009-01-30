@@ -31,16 +31,31 @@ void PriorityQueue<T>::enqueue(T value)
 		mList.insertFirst(value);
 		return;
 	}
-	for (int i = 0; i < mList.size(); i++)
+	else if (mList.elementAt(0) <= value)
 	{
-		if (mList.elementAt(i) < value)
-		{
-			mList.insertAt(i, value);
-		       	return;	
-		}	
+
+		mList.insertFirst(value);
+		return;
 	}
-	//value is smallest
-	mList.insertLast(value);
+	int lower = 0, upper = mList.size(), middle = upper /2;
+	while(1)
+	{
+		if(middle == lower)
+		{
+			mList.insertAt(middle+1, value);
+			return;
+		}
+		if (mList.elementAt(middle) < value)
+		{
+			upper = middle;
+			middle = lower + (upper - lower)/2;
+		}
+		else if(mList.elementAt(middle) > value)
+		{
+			lower = middle;
+			middle = lower + (upper - lower)/2;
+		}
+	}
 }
 
 template <typename T>
