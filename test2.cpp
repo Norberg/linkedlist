@@ -7,6 +7,11 @@ using namespace std;
 int main()
 {
 	List<int> lista;
-	lista.insertLast(1);
+	for (int j = 0; j < 100; j++)
+	{
+		for (int i = 0; i < 10000; i++)
+			lista.insertLast(1);
+		cout << j+1 << "%" << endl;
+	}
 	return 0;
 }

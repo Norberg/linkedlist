@@ -26,15 +26,21 @@ PriorityQueue<T> PriorityQueue<T>::operator=(const PriorityQueue& queue)
 template <typename T>
 void PriorityQueue<T>::enqueue(T value)
 {
+	if (!mList.size())
+	{
+		mList.insertFirst(value);
+		return;
+	}
 	for (int i = 0; i < mList.size(); i++)
 	{
 		if (mList.elementAt(i) < value)
 		{
-			//working here!
-			mList.insertAt(i+1, value);
-		       	break;	
+			mList.insertAt(i, value);
+		       	return;	
 		}	
 	}
+	//value is smallest
+	mList.insertLast(value);
 }
 
 template <typename T>

@@ -108,9 +108,15 @@ template <typename T>
 void List<T>::insertAt(int pos, T value)
 {
 	if (pos == nrOfNodes)
+	{
 		insertLast(value);
+		return;
+	}
 	else if (pos == 0)
+	{
 		insertFirst(value);
+		return;
+	}
 	else if (pos < 0 || pos > nrOfNodes)
 	{
 		cerr << "Out of range error" << endl;

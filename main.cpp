@@ -5,9 +5,9 @@ using namespace std;
 
 int main()
 {
-	List<double> lista;
-	lista.insertFirst(10.3);
-	lista.insertLast(20.4);
+	List<int> lista;
+	lista.insertFirst(-10);
+	lista.insertLast(20);
 	for (int i = 0; i < lista.size(); i++)
 	{
 		cout << i << " :" << lista.elementAt(i) << endl;
