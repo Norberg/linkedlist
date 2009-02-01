@@ -13,6 +13,15 @@ Queue<T>::Queue()
 template <typename T>
 Queue<T>::Queue(const Queue& queue)
 {
+	mArray  = new T[queue.mCapacity];
+	for (unsigned int i = 0; i < queue.mCapacity; i++)
+	{
+		mArray[i] = queue.mArray[i];
+	}
+	mCapacity = queue.mCapacity;
+	mFront = queue.mFront;
+	mEnd = queue.mEnd;
+	mSize = queue.mSize;
 }
 
 template <typename T>
@@ -24,7 +33,18 @@ Queue<T>::~Queue()
 template <typename T>
 Queue<T> Queue<T>::operator=(const Queue& queue)
 {
-
+	delete [] mArray;
+	mArray  = new T[queue.mCapacity];
+	for (unsigned int i = 0; i < queue.mCapacity; i++)
+	{
+		mArray[i] = queue.mArray[i];
+	}
+	mCapacity = queue.mCapacity;
+	mFront = queue.mFront;
+	mEnd = queue.mEnd;
+	mSize = queue.mSize;
+	return *this;
+	
 }
 
 template <typename T>
@@ -32,12 +52,15 @@ void Queue<T>::enqueue(T value)
 {
 	if(mCapacity <= mSize)
 	{
-		mCapacity += RESIZE;
-		T* newArray  = new T[mCapacity];
+		T* newArray  = new T[mCapacity + RESIZE];
 		for (unsigned int i = 0; i < mSize; i++)
 		{
-			newArray[i] = mArray[i];	
+			newArray[i] = mArray[mFront];
+			mFront = (mFront+1) % mCapacity;
 		}
+		mCapacity += RESIZE;
+		mFront = 0;
+		mEnd = mSize -1;
 		delete [] mArray;
 		mArray = newArray;
 	}
@@ -58,32 +81,17 @@ void Queue<T>::enqueue(T value)
 template <typename T>
 void Queue<T>::dequeue()
 {
-	if(mCapacity > mSize + RESIZE)
+	if(mCapacity >= mSize + RESIZE)
 	{
-		mCapacity -= RESIZE;
-		T* newArray = new T[mCapacity];
-		if (mEnd > mFront)
+		T* newArray = new T[mCapacity-RESIZE];
+		cout << "Shrinking Queue" << endl;
+		for (unsigned int i = 0; i < (mCapacity - RESIZE); i++)
 		{
-			cout << "Shinking Queue, forward" << endl;
-			int j = 0;
-			for (unsigned int i = mFront; i < mEnd; i++)
-			{
-				//imFront = (mFront+1) % mCapacity;
-				newArray[j] = mArray[i];
-				j++;
-			}
-		}
-		else
-		{
-			cout << "Shinking Queue, bakwards" << endl;
-			int j = mSize;
-			for (unsigned int i = mEnd; i < mFront; i++)
-			{
-				newArray[j] = mArray[i];
-				j--;
-			}
+			newArray[i] = mArray[mFront];
+			mFront = (mFront+1) % mCapacity;
 		}
 
+		mCapacity -= RESIZE;
 		mFront = 0;
 		mEnd = mSize -1;
 		delete [] mArray;
