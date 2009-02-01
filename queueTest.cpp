@@ -1,22 +1,26 @@
 #include <iostream>
-#include "Queue.h"
-#include "List.h"
+#include "QueueArray.h"
 
 using namespace std;
 
 int main()
 {
 	Queue<int> q;
-	q.enqueue(1);
-	q.enqueue(2);
-	q.enqueue(3);
-	q.enqueue(4);
-	Queue<int> a;
-       	a = q;
-	while(!a.empty())
+	for (int i = 0; i < 20; i++)
 	{
-		cout << a.front() << endl;
-		a.dequeue();
+		q.enqueue(i);
+	}
+	for (int i = 0; i < 20; i++)
+	{
+	//	q.enqueue(q.front());
+	//	q.dequeue();
+	}
+//	Queue<int> a;
+ //     	a = q;
+	while(!q.empty())
+	{
+		cout << q.front() << endl;
+		q.dequeue();
 	}
 	return 0;
 }
