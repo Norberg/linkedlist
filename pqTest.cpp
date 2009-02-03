@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdlib>
-#include "PriorityQueue.h" 
+#include "PriorityQueueHeap.h" 
 
 using namespace std;
 
@@ -8,17 +8,17 @@ int main()
 {
 	//to be able to do fair benchmarks we better use a constant seed
 	srand(42); 
-	PriorityQueue<int> pg;
-	for (int i = 0; i < 3000; i++)
+	PriorityQueue<int> pq;
+	for (int i = 0; i < 10; i++)
 	{
-		pg.enqueue(rand());
+		pq.enqueue(i);
 	}
-	/*	
-	while(!pg.empty())
+	pq.enqueue(99);
+	pq.enqueue(10);
+	while(!pq.empty())
 	{
-		cout << pg.front() << endl;
-		pg.dequeue();
+		cout << pq.front() << endl;
+		pq.dequeue();
 	}
-	*/
 	return 0;
 }
