@@ -17,7 +17,7 @@ PriorityQueue<T>::PriorityQueue(const PriorityQueue& queue)
 template <typename T>
 PriorityQueue<T>::~PriorityQueue()
 {
-
+	delete [] mHeap;
 }
 
 template <typename T>
@@ -40,7 +40,8 @@ void PriorityQueue<T>::enqueue(T value)
 	}
 	mHeap[mSize] = value;
 	int i = mSize;
-	while(i >= 0)
+	mSize++;
+	while(i > 0)
 	{
 		if (mHeap[i] > mHeap[(i-1) / 2])
 		{
@@ -64,22 +65,44 @@ void PriorityQueue<T>::dequeue()
 	else if(mSize == 1)
 	{
 		mSize--;
+		return;
 	}
 	mSize--;
 	mHeap[0] = mHeap[mSize];
-	if (mHeap[1] > mHeap[2])
+	unsigned int i = 0;
+	while (i < mSize)
 	{
-		swap(mHeap[0], mHeap[1]);		
-	}
-	else
-	{
-		swap(mHeap[0], mHeap[2]);		
+		//if left child is bigger then parent and right child
+		if (mHeap[i] < mHeap[2*i+1] && mHeap[2*i+1] >= mHeap[2*i+2] && 2*i+1 < mSize)	
+		{
+			//cerr << "L: size: " << mSize << " child: " << 2*i+1 << endl;
+			swap(mHeap[i], mHeap[2*i+1]);
+			i = 2*i+1;	
+		}
+		//if wight child is bigger then parent and left child
+		else if (mHeap[i] < mHeap[2*i+2] && mHeap[2*i+1] <= mHeap[2*i+2] && (2*i+2) < mSize)
+		{
+			//cerr << "R: size: " << mSize << " child: " << 2*i+2 << endl;
+			swap(mHeap[i], mHeap[2*i+2]);	
+			i = 2*i+2;	
+		}
+		else
+		{
+			//finnished
+			break;
+		}	
 	}
 }
 
 template <typename T>
 T PriorityQueue<T>::front()
 {
+	/*cerr << "<data>" << endl;
+	for (uint i  = 0; i < mSize; i++)
+	{
+		cerr << i << ": " << mHeap[i] << endl; 
+	}
+	cerr << "</data>" << endl;*/
 	return mHeap[0];
 }
 
